@@ -8,7 +8,7 @@ Se recorre letra por letra y se usa la clave letra por letra tambien. Cuando se 
 abcedario = 'abcdefghijklmñnopqrstuvwxyz'
 largo_abc = len(abcedario)
 
-def vigenere(mensaje, clave, direccion):
+def vigenere(mensaje, clave, direccion=1):
     largo_clave = len(clave)
     #seteo el indice primero de la clave para empezar desde esa primera letra con el cifrado
     index_clave = 0
@@ -37,7 +37,7 @@ def vigenere(mensaje, clave, direccion):
 
 mensaje = "ave vigenere loco"
 clave = "abc"
-mensaje_cifrado = vigenere(mensaje, clave, 1)
+mensaje_cifrado = vigenere(mensaje, clave)
 print(mensaje_cifrado)
 """
 Parece que funciona bien porque en los lugares donde se usa la a como letra de la clave para el shifteo las letras del mensaje original se mantienen igual,
