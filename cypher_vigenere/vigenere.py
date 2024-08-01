@@ -8,7 +8,7 @@ Se recorre letra por letra y se usa la clave letra por letra tambien. Cuando se 
 abcedario = 'abcdefghijklmñnopqrstuvwxyz'
 largo_abc = len(abcedario)
 
-def vigenere(mensaje, clave):
+def vigenere(mensaje, clave, direccion):
     largo_clave = len(clave)
     #seteo el indice primero de la clave para empezar desde esa primera letra con el cifrado
     index_clave = 0
@@ -22,8 +22,8 @@ def vigenere(mensaje, clave):
             #es necesario usar modulo para no pasarme de los indices de la clave y empezar desde el principio
             #cuando el index_clave aumente mas alla de la cantidad de letras de la clave
             letra_clave = clave[index_clave % largo_clave]
-            #busco la posicion que ocupa esta letra en el abcedario. Eso me dara el nuevo shifteo
-            shifteo = abcedario.find(letra_clave)
+            #busco la posicion que ocupa esta letra en el abcedario. Eso me dara el nuevo shifteo. Con direccion podemos encriptar con 1 o desencriptar con -1
+            shifteo = abcedario.find(letra_clave) * direccion
             #busco la posicion de la letra del mensaje en el abcedario
             index_letra = abcedario.find(letra)
             #obengo la letra shifteada. Debo hacer modulo el largo del abcedario para no pasarme
@@ -37,9 +37,12 @@ def vigenere(mensaje, clave):
 
 mensaje = "ave vigenere loco"
 clave = "abc"
-mensaje_cifrado = vigenere(mensaje, clave)
+mensaje_cifrado = vigenere(mensaje, clave, 1)
 print(mensaje_cifrado)
 """
 Parece que funciona bien porque en los lugares donde se usa la a como letra de la clave para el shifteo las letras del mensaje original se mantienen igual,
 es decir, hay un shifteo de 0, pues es la posicion que ocupa la a en el abcedario.
 """
+#para desencriptar el mensaje, invierto la direccion de encriptado
+mensaje_descifrado = vigenere(mensaje_cifrado, clave, -1)
+print(mensaje_descifrado)
